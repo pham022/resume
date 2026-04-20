@@ -2,13 +2,40 @@
 <html lang="en" style="width:100%; height:100%;">
 <head>
   <meta charset="utf-8">
-  <title>Alice's Resume</title>
+  <title>Pham's Resume</title>
 </head>
 <body style="width:100%; height:100%; margin:0;">
   <iframe
-    src="https://github.com/pham022/resume/raw/e28092cc002f48bac92f05d8e94709912e9a0f0c/Anh-Pham-Resume.pdf"
+    id="resume"
+    src="https://github.com/pham022/resume/raw/e28092cc002f48bac92f05d8e94709912e9a0f0c/Anh-Pham-Resume.pdf";
     style="width:100%; height:100%;"
     frameborder="0">
   </iframe>
+
+  <script>
+    var pdf = "https://github.com/pham022/resume/raw/e28092cc002f48bac92f05d8e94709912e9a0f0c/Anh-Pham-Resume.pdf";
+    var iframe = document.getElementById("resume");
+
+    iframe.onerror = function () {
+      window.location.href = pdf;
+    };
+
+    // Extra safety: if iframe is empty after 3 seconds, redirect
+    setTimeout(function () {
+      try {
+        // If we can't access iframe content, it likely failed
+        if (!iframe.contentDocument || !iframe.contentDocument.body.innerHTML) {
+          window.location.href = pdf;
+        }
+      } catch (e) {
+        // Cross-origin error means something loaded — that's fine
+      }
+    }, 3000);
+  </script>
+
+  <!-- Final fallback for users with JS disabled -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=https://github.com/[githubname]/resume/raw/e28092cc002f48bac92f05d8e94709912e9a0f0c/Alice-Resume.pdf">
+  </noscript>
 </body>
 </html>
