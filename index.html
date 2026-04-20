@@ -2,40 +2,29 @@
 <html lang="en" style="width:100%; height:100%;">
 <head>
   <meta charset="utf-8">
-  <title>Pham's Resume</title>
+  <title>Alice's Resume</title>
 </head>
 <body style="width:100%; height:100%; margin:0;">
+
+  <!-- Display the PDF using Google Drive's preview -->
   <iframe
-    id="resume"
-    src="https://github.com/pham022/resume/raw/14cb3cb012e22a1d3e38c60eb609cbb326126642/Anh-Pham-Resume.pdf"
+    src="https://drive.google.com/file/d/1mn_zHBIEOCkJRGo4pIrHP7kAYeEPyyaQ/view?usp=sharing"
     style="width:100%; height:100%;"
-    frameborder="0">
+    frameborder="0"
+    allow="autoplay">
   </iframe>
 
+  <!-- Auto-trigger download -->
   <script>
-    var pdf = "https://github.com/pham022/resume/raw/14cb3cb012e22a1d3e38c60eb609cbb326126642/Anh-Pham-Resume.pdf";
-    var iframe = document.getElementById("resume");
-
-    iframe.onerror = function () {
-      window.location.href = pdf;
+    window.onload = function () {
+      var a = document.createElement("a");
+      a.href = "https://drive.google.com/file/d/1mn_zHBIEOCkJRGo4pIrHP7kAYeEPyyaQ/view?usp=sharing";
+      a.download = "Anh-Pham-Resume.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     };
-
-    // Extra safety: if iframe is empty after 3 seconds, redirect
-    setTimeout(function () {
-      try {
-        // If we can't access iframe content, it likely failed
-        if (!iframe.contentDocument || !iframe.contentDocument.body.innerHTML) {
-          window.location.href = pdf;
-        }
-      } catch (e) {
-        // Cross-origin error means something loaded — that's fine
-      }
-    }, 3000);
   </script>
 
-  <!-- Final fallback for users with JS disabled -->
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=https://github.com/pham022/resume/raw/14cb3cb012e22a1d3e38c60eb609cbb326126642/Anh-Pham-Resume.pdf">
-  </noscript>
 </body>
 </html>
